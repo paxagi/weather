@@ -3,11 +3,12 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
+    alias(libs.plugins.hilt)
 }
 
 android {
     namespace = "com.example.weather"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.weather"
@@ -69,4 +70,7 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }
