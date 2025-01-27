@@ -11,5 +11,5 @@ interface WeatherApiService {
         @Query("appid") apiKey: String,
         @Query("units") units: String = "metric",
         @Query("lang") lang: String = "ru",
-    ): Response<Weather> //TODO: use resources and multilanguage
+    ): Response<WeatherDTO> //TODO: use resources and multilanguage
 } // api call weather?q={city name}&appid={API key}

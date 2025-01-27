@@ -1,6 +1,6 @@
-package com.example.weather.data
+package com.example.weather.domain
 
-data class Weather(
+data class WeatherDomain(
     val temperature: Float,
     val feelsLike: Float,
     val temperatureMin: Float,
@@ -8,11 +8,4 @@ data class Weather(
     val pressure: Int,
     val humidity: Int,
     val description: String,
-    val city: String,
-)
-
-data class City(
-    val latitude: Float,
-    val longitude: Float,
-    val city: String,
 )
