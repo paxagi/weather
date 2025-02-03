@@ -4,10 +4,12 @@ import com.example.weather.domain.WeatherDomain
 import com.google.gson.annotations.SerializedName
 
 data class WeatherDTO(
+    val name: String,
     val main: Main,
     val weather: List<WeatherItem>,
 ) {
     fun toDomain() = WeatherDomain(
+        City(name),
         main.temperature,
         main.feelsLike,
         main.temperatureMin,

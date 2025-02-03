@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
@@ -23,9 +24,15 @@ class FavoriteCitiesFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = FavoriteCitiesRecyclerViewAdapter(
-            listOf(CityItem("NN", ">0"))
-        )
+        recyclerView.adapter = WeatherRecyclerViewAdapter(
+            listOf(WeatherItem("NN", ">0", ))
+        ) { weather ->
+            FavoriteCitiesFragmentDirections
+                .actionFavoriteCitiesFragmentToWeatherDetailsFragment(weather)
+                .let {
+                findNavController().navigate(it)
+            }
+        }
 
     }
 }

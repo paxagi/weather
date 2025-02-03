@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
     alias(libs.plugins.hilt)
+    alias(libs.plugins.navigation.safeargs)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -76,4 +78,5 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
 }

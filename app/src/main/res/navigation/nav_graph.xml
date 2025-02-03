@@ -22,11 +22,19 @@
         android:id="@+id/weatherDetailsFragment"
         android:name="com.example.weather.ui.WeatherDetailsFragment"
         android:label="Weather Details"
-        tools:layout="@layout/fragment_weather_details" />
+        tools:layout="@layout/fragment_weather_details">
+        <argument
+            android:name="weather"
+            app:argType="com.example.weather.ui.WeatherItem" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchCityFragment"
         android:name="com.example.weather.ui.SearchCityFragment"
         android:label="Search City"
-        tools:layout="@layout/fragment_search_city" />
+        tools:layout="@layout/fragment_search_city">
+        <action
+            android:id="@+id/action_searchCityFragment_to_weatherDetailsFragment"
+            app:destination="@id/weatherDetailsFragment" />
+    </fragment>
 </navigation>
