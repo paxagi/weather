@@ -4,9 +4,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.weather.data.City
-
-import com.example.weather.placeholder.PlaceholderContent.PlaceholderItem
 import com.example.weather.databinding.FavoriteCityItemBinding
 
 
