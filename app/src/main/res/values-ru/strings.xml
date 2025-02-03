@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Погода</string>
     <string name="city_name_hint">Введите название города</string>
+    <string name="favorite_cities_label">Избранное</string>
+    <string name="search_city_label">Поиск</string>
 </resources>
