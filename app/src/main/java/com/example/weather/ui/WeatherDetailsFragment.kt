@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.example.weather.data.City
 import com.example.weather.databinding.FragmentWeatherDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class WeatherDetailsFragment : Fragment() {
 
+    private val weatherViewModel: WeatherViewModel by viewModels()
     private val navArgs: WeatherDetailsFragmentArgs by navArgs()
-
     private var _binding: FragmentWeatherDetailsBinding? = null
     private val binding get() = _binding!!
 
@@ -31,6 +35,11 @@ class WeatherDetailsFragment : Fragment() {
         val weather: WeatherItem = navArgs.weather
         val textViewCity: TextView = binding.textViewCity
         val textViewTemperature: TextView = binding.textViewTemperature
+        val buttonAddToFavorites: Button = binding.buttonAddOrRemoveToFavorites
+
+        buttonAddToFavorites.setOnClickListener {
+            weatherViewModel.addOrRemoveFavoriteCity(City(weather.cityName))
+        }
 
         textViewCity.text = weather.cityName
         textViewTemperature.text = "${weather.temperature}°C"

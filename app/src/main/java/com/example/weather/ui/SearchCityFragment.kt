@@ -18,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchCityFragment : Fragment() {
 
     private val weatherViewModel: WeatherViewModel by viewModels()
-
     private var _binding: FragmentSearchCityBinding? = null
     private val binding get() = _binding!!
 
@@ -35,17 +34,10 @@ class SearchCityFragment : Fragment() {
 
         val editTextCity: EditText = binding.editTextCity
         val buttonSearch: Button = binding.buttonSearch
-        val buttonAddToFavorites: Button = binding.buttonAddToFavorites
 
         buttonSearch.setOnClickListener {
             val cityName = editTextCity.text.toString()
             weatherViewModel.fetchWeatherData(City(cityName), ApiKey.KEY)
-            // Отобразить найденый город
-        }
-
-        buttonAddToFavorites.setOnClickListener {
-            val cityName = editTextCity.text.toString()
-            // Добавить город в список избранных (сохранить в репозитории)
         }
 
         weatherViewModel.weatherData.observe(viewLifecycleOwner) { weather ->

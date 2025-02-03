@@ -27,5 +27,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
+    <Button
+        android:id="@+id/buttonAddOrRemoveToFavorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add to Favorites"
+        app:layout_constraintTop_toBottomOf="@id/textViewTemperature"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

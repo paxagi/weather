@@ -35,9 +35,15 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
-    fun addFavoriteCity(city: City) {
+    fun addOrRemoveFavoriteCity(city: City) {
         viewModelScope.launch {
-            favoriteCitiesRepository.insert(city)
+            loadFavoriteCities()
+            val currentFavorites = _favoriteCities.value ?: emptyList()
+            if (currentFavorites.contains(city)) {
+                favoriteCitiesRepository.delete(city.name)
+            } else {
+                favoriteCitiesRepository.insert(city)
+            }
             loadFavoriteCities()
         }
     }
