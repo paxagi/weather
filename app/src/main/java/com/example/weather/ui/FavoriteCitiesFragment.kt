@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -28,18 +29,25 @@ class FavoriteCitiesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
+        val emptyTextView: TextView = view.findViewById(R.id.emptyTextView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         weatherViewModel.favoriteCities.observe(viewLifecycleOwner) { weatherList ->
-            recyclerView.adapter = WeatherRecyclerViewAdapter(weatherList) { weather ->
-                FavoriteCitiesFragmentDirections
-                    .actionFavoriteCitiesFragmentToWeatherDetailsFragment(weather)
-                    .let {
-                        findNavController().navigate(it)
-                    }
+            if (weatherList.isEmpty()) {
+                recyclerView.visibility = View.GONE
+                emptyTextView.visibility = View.VISIBLE
+            } else {
+                recyclerView.visibility = View.VISIBLE
+                emptyTextView.visibility = View.GONE
+                recyclerView.adapter = WeatherRecyclerViewAdapter(weatherList) { weather ->
+                    FavoriteCitiesFragmentDirections
+                        .actionFavoriteCitiesFragmentToWeatherDetailsFragment(weather)
+                        .let {
+                            findNavController().navigate(it)
+                        }
+                }
             }
         }
-
         weatherViewModel.loadFavoriteCities()
     }
 }

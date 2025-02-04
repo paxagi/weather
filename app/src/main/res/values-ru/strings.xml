@@ -4,4 +4,8 @@
     <string name="city_name_hint">Введите название города</string>
     <string name="favorite_cities_label">Избранное</string>
     <string name="search_city_label">Поиск</string>
+    <string name="fav_remove_btn_label">Удалить из Избранного</string>
+    <string name="fav_add_btn_label">Добавить в Избранное</string>
+    <string name="search_btn_label">Поиск</string>
+    <string name="no_favorite_cities_tv_lavel">Нет избранных городов</string>
 </resources>

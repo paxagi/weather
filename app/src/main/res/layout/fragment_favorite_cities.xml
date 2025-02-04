@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.FavoriteCitiesFragment">
 
+    <TextView
+        android:id="@+id/emptyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/no_favorite_cities_tv_lavel"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"

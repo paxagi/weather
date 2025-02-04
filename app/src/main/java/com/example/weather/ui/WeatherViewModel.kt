@@ -21,8 +21,10 @@ class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
     private val favoriteCitiesRepository: FavoriteCitiesRepository,
 ): ViewModel() {
-    private var _citiesWeathers = MutableLiveData<List<WeatherDomain?>>()
-    private var citiesWeathers: LiveData<List<WeatherDomain?>> = _citiesWeathers
+    private val _cityIsFavorite = MutableLiveData<Boolean>()
+    var cityIsFavorite: LiveData<Boolean> = _cityIsFavorite
+    private val _favoriteCities = MutableLiveData<MutableList<WeatherItem>>()
+    val favoriteCities: LiveData<MutableList<WeatherItem>> = _favoriteCities
 
     private val _weatherData = MutableLiveData<WeatherDomain?>()
     val weatherData: LiveData<WeatherDomain?>
@@ -32,12 +34,15 @@ class WeatherViewModel @Inject constructor(
             return result
         }
 
-    private val _favoriteCities = MutableLiveData<MutableList<WeatherItem>>()
-    val favoriteCities: LiveData<MutableList<WeatherItem>> = _favoriteCities
-
     fun fetchWeatherData(city: City, apiKey: String) {
         viewModelScope.launch {
             _weatherData.value = weatherRepository.getCurrentWeather(city, apiKey)
+        }
+    }
+
+    fun isFavorite(city: City) {
+        viewModelScope.launch {
+            _cityIsFavorite.value = favoriteCitiesRepository.exists(city)
         }
     }
 

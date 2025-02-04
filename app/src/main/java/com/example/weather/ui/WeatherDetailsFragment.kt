@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.example.weather.R
 import com.example.weather.data.City
 import com.example.weather.databinding.FragmentWeatherDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,15 @@ class WeatherDetailsFragment : Fragment() {
         val textViewCity: TextView = binding.textViewCity
         val textViewTemperature: TextView = binding.textViewTemperature
         val buttonAddToFavorites: Button = binding.buttonAddOrRemoveToFavorites
+
+        weatherViewModel.cityIsFavorite.observe(viewLifecycleOwner) { isExits ->
+            isExits?.let {
+                binding.buttonAddOrRemoveToFavorites.text =
+                    if (isExits) getString(R.string.fav_remove_btn_label)
+                    else getString(R.string.fav_add_btn_label)
+            }
+        }
+        weatherViewModel.isFavorite(City(weather.cityName))
 
         buttonAddToFavorites.setOnClickListener {
             weatherViewModel.addOrRemoveFavoriteCity(City(weather.cityName))
