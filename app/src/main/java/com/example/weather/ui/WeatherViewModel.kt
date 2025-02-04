@@ -70,14 +70,8 @@ class WeatherViewModel @Inject constructor(
             } else {
                 favoriteCitiesRepository.insert(city)
             }
+            isFavorite(city)
             loadFavoriteCities().join()
-        }
-    }
-
-    fun removeFavoriteCity(city: City) {
-        viewModelScope.launch {
-            favoriteCitiesRepository.delete(city.name)
-            loadFavoriteCities()
         }
     }
 }
