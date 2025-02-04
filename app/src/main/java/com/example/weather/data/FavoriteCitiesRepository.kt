@@ -6,4 +6,5 @@ class FavoriteCitiesRepository @Inject constructor(private val dao: FavoriteCiti
     suspend fun insert(city: City) = dao.insert(FavoriteCity(city.name))
     suspend fun getAll(): List<City> = dao.getAll().map { City(it.city) }
     suspend fun delete(cityName: String) = dao.delete(cityName)
+    suspend fun exists(city: City): Boolean = dao.exists(city.name)
 }

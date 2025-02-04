@@ -30,10 +30,7 @@ class FavoriteCitiesFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        weatherViewModel.favoriteCities.observe(viewLifecycleOwner) { favoriteCities ->
-            val weatherList = favoriteCities.map {
-                WeatherItem( it.name, "any temperature" )
-            }
+        weatherViewModel.favoriteCities.observe(viewLifecycleOwner) { weatherList ->
             recyclerView.adapter = WeatherRecyclerViewAdapter(weatherList) { weather ->
                 FavoriteCitiesFragmentDirections
                     .actionFavoriteCitiesFragmentToWeatherDetailsFragment(weather)

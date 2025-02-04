@@ -32,19 +32,22 @@ class SearchCityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        weatherViewModel.weatherData.observe(viewLifecycleOwner) { weather ->
+            weather?.let {
+                val action =
+                    SearchCityFragmentDirections.actionSearchCityFragmentToWeatherDetailsFragment(
+                        weather.toUI()
+                    )
+                findNavController().navigate(action)
+            }
+        }
+
         val editTextCity: EditText = binding.editTextCity
         val buttonSearch: Button = binding.buttonSearch
 
         buttonSearch.setOnClickListener {
-            val cityName = editTextCity.text.toString()
-            weatherViewModel.fetchWeatherData(City(cityName), ApiKey.KEY)
-        }
-
-        weatherViewModel.weatherData.observe(viewLifecycleOwner) { weather ->
-            weather?.let {
-                val action = SearchCityFragmentDirections.actionSearchCityFragmentToWeatherDetailsFragment(it.toUI())
-                findNavController().navigate(action)
-            }
+                val cityName = editTextCity.text.toString()
+                weatherViewModel.fetchWeatherData(City(cityName), ApiKey.KEY)
         }
     }
 }

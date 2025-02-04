@@ -16,4 +16,7 @@ interface FavoriteCitiesDao {
 
     @Query("DELETE FROM favorite_cities WHERE city = :cityName")
     suspend fun delete(cityName: String)
+
+    @Query("SELECT EXISTS(SELECT 1 FROM favorite_cities WHERE city = :cityName)")
+    suspend fun exists(cityName: String): Boolean
 }
