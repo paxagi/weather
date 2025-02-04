@@ -3,6 +3,8 @@ package com.example.weather.data
 import com.example.weather.domain.WeatherDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 class WeatherRepository @Inject constructor(
@@ -10,7 +12,18 @@ class WeatherRepository @Inject constructor(
 ) {
     suspend fun getCurrentWeather(city: City, apiKey: String): WeatherDomain? {
         return withContext(Dispatchers.IO) {
-            apiService.getCurrentWeather(city.name, apiKey).body()?.toDomain()
+            try {
+                val response = apiService.getCurrentWeather(city.name, apiKey)
+                if (response.isSuccessful) {
+                    response.body()?.toDomain()
+                } else {
+                    null
+                }
+            } catch (e: IOException) {
+                null
+            } catch (e: HttpException) {
+                null
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ class SearchCityFragment : Fragment() {
         val buttonSearch: Button = binding.buttonSearch
 
         buttonSearch.setOnClickListener {
-                val cityName = editTextCity.text.toString()
+                val cityName = editTextCity.text.toString().trim()
                 weatherViewModel.fetchWeatherData(City(cityName), ApiKey.KEY)
         }
     }
