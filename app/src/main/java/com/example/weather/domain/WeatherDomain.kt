@@ -13,5 +13,14 @@ data class WeatherDomain(
     val humidity: Int,
     val description: String,
 ) {
-    fun toUI() = WeatherItem(city.name, temperature.toString())
+    fun toUI() = WeatherItem(
+        city.name,
+        temperature.toString(),
+        feelsLike.toString(),
+        temperatureMin.toString(),
+        temperatureMax.toString(),
+        pressure.toString(),
+        humidity.toString(),
+        description,
+    )
 }

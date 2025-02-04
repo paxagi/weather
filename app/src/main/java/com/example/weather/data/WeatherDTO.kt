@@ -22,7 +22,7 @@ data class WeatherDTO(
 
 data class Main(
     @SerializedName("temp") val temperature: Float,
-    val feelsLike: Float,
+    @SerializedName("feels_like") val feelsLike: Float,
     val pressure: Int,
     val humidity: Int,
     @SerializedName("temp_min") val temperatureMin: Float,

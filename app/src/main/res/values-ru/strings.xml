@@ -8,4 +8,7 @@
     <string name="fav_add_btn_label">Добавить в Избранное</string>
     <string name="search_btn_label">Поиск</string>
     <string name="no_favorite_cities_tv_lavel">Нет избранных городов</string>
+    <string name="temp_range_text">Диапазон температур сегодня</string>
+    <string name="temp_feels_like_text">Но чувствуется как</string>
+    <string name="weather_description_text">За окном</string>
 </resources>

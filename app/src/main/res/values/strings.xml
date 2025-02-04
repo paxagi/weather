@@ -7,4 +7,7 @@
     <string name="fav_add_btn_label">Add to Favorites</string>
     <string name="search_btn_label">Search</string>
     <string name="no_favorite_cities_tv_lavel">No Favorite cities</string>
+    <string name="temp_range_text">Temperature range today</string>
+    <string name="temp_feels_like_text">But feels like</string>
+    <string name="weather_description_text">Full description –</string>
 </resources>

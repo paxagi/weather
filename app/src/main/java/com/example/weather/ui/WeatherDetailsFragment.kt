@@ -36,6 +36,7 @@ class WeatherDetailsFragment : Fragment() {
         val weather: WeatherItem = navArgs.weather
         val textViewCity: TextView = binding.textViewCity
         val textViewTemperature: TextView = binding.textViewTemperature
+        val textViewFullDescription =  binding.textViewFullDescription
         val buttonAddToFavorites: Button = binding.buttonAddOrRemoveToFavorites
 
         weatherViewModel.cityIsFavorite.observe(viewLifecycleOwner) { isExits ->
@@ -52,7 +53,13 @@ class WeatherDetailsFragment : Fragment() {
         }
 
         textViewCity.text = weather.cityName
-        textViewTemperature.text = "${weather.temperature}°C"
+        weather.run {
+            textViewTemperature.text = "${temperature}°C"
+            textViewFullDescription.text =
+                "${getString(R.string.temp_range_text)}: $temperatureMin...$temperatureMax\n" +
+                "\n${getString(R.string.temp_feels_like_text)}: $feelsLike°C" +
+                "\n${getString(R.string.weather_description_text)} $description"
+        }
     }
 
 }
