@@ -10,4 +10,5 @@
     <string name="temp_range_text">Temperature range today</string>
     <string name="temp_feels_like_text">But feels like</string>
     <string name="weather_description_text">Full description –</string>
+    <string name="cities_not_loaded">Cities not loaded</string>
 </resources>

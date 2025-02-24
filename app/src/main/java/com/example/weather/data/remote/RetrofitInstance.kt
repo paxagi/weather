@@ -1,4 +1,4 @@
-package com.example.weather.data
+package com.example.weather.data.remote
 
 import dagger.Module
 import dagger.Provides

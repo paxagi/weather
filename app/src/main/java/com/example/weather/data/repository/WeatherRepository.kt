@@ -1,6 +1,9 @@
-package com.example.weather.data
+package com.example.weather.data.repository
 
-import com.example.weather.domain.WeatherDomain
+import com.example.domain.City
+import com.example.weather.data.mapper.toDomain
+import com.example.weather.data.remote.WeatherApiService
+import com.example.domain.WeatherDomain
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -10,7 +13,7 @@ import javax.inject.Inject
 class WeatherRepository @Inject constructor(
     private val apiService: WeatherApiService,
 ) {
-    suspend fun getCurrentWeather(city: City, apiKey: String): WeatherDomain? {
+    suspend fun getCurrentWeather(city: City, apiKey: String): com.example.domain.WeatherDomain? {
         return withContext(Dispatchers.IO) {
             try {
                 val response = apiService.getCurrentWeather(city.name, apiKey)

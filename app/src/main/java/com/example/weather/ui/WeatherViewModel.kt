@@ -1,14 +1,14 @@
 package com.example.weather.ui
 
-import ApiKey
+import com.example.weather.data.remote.ApiKey
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weather.data.City
-import com.example.weather.data.FavoriteCitiesRepository
-import com.example.weather.data.WeatherRepository
-import com.example.weather.domain.WeatherDomain
+import com.example.domain.City
+import com.example.weather.data.repository.FavoriteCitiesRepository
+import com.example.weather.data.repository.WeatherRepository
+import com.example.weather.data.mapper.toUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -23,11 +23,15 @@ class WeatherViewModel @Inject constructor(
 ): ViewModel() {
     private val _cityIsFavorite = MutableLiveData<Boolean>()
     var cityIsFavorite: LiveData<Boolean> = _cityIsFavorite
+
+    private val _fetchedProblem = MutableLiveData<Boolean>()
+    var fetchedProblem: LiveData<Boolean> = _fetchedProblem
+
     private val _favoriteCities = MutableLiveData<MutableList<WeatherItem>>()
     val favoriteCities: LiveData<MutableList<WeatherItem>> = _favoriteCities
 
-    private val _weatherData = MutableLiveData<WeatherDomain?>()
-    val weatherData: LiveData<WeatherDomain?>
+    private val _weatherData = MutableLiveData<com.example.domain.WeatherDomain?>()
+    val weatherData: LiveData<com.example.domain.WeatherDomain?>
         get() {
             val result = _weatherData
             _weatherData.value = null
@@ -37,6 +41,7 @@ class WeatherViewModel @Inject constructor(
     fun fetchWeatherData(city: City, apiKey: String) {
         viewModelScope.launch {
             _weatherData.value = weatherRepository.getCurrentWeather(city, apiKey)
+            _fetchedProblem.value = _weatherData.value == null
         }
     }
 

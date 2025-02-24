@@ -36,6 +36,7 @@ class FavoriteCitiesFragment : Fragment() {
             if (weatherList.isEmpty()) {
                 recyclerView.visibility = View.GONE
                 emptyTextView.visibility = View.VISIBLE
+                if (weatherViewModel.fetchedProblem.value == true) emptyTextView.text = getString(R.string.cities_not_loaded)
             } else {
                 recyclerView.visibility = View.VISIBLE
                 emptyTextView.visibility = View.GONE

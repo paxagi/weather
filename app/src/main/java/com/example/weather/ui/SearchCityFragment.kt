@@ -1,6 +1,6 @@
 package com.example.weather.ui
 
-import ApiKey
+import com.example.weather.data.remote.ApiKey
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,8 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.weather.data.City
+import com.example.domain.City
+import com.example.weather.data.mapper.toUI
 import com.example.weather.databinding.FragmentSearchCityBinding
 import dagger.hilt.android.AndroidEntryPoint
 

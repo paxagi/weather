@@ -1,15 +1,12 @@
 package com.example.weather.ui
 
-import ApiKey
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.weather.R
-import com.example.weather.data.City
-import com.example.weather.data.FavoriteCitiesDao
+import com.example.weather.data.local.FavoriteCitiesDao
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

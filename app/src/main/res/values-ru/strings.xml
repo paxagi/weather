@@ -11,4 +11,5 @@
     <string name="temp_range_text">Диапазон температур сегодня</string>
     <string name="temp_feels_like_text">Но чувствуется как</string>
     <string name="weather_description_text">За окном</string>
+    <string name="cities_not_loaded">Города не загружены</string>
 </resources>
