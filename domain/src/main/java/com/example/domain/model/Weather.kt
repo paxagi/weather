@@ -1,6 +1,6 @@
-package com.example.domain
+package com.example.domain.model
 
-data class WeatherDomain(
+data class Weather(
     val city: City,
     val temperature: Float,
     val feelsLike: Float,

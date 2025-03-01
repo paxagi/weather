@@ -1,9 +1,7 @@
-package com.example.weather.data
+package com.example.data.local
 
 import android.content.Context
 import androidx.room.Room
-import com.example.weather.data.local.AppDatabase
-import com.example.weather.data.local.FavoriteCitiesDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

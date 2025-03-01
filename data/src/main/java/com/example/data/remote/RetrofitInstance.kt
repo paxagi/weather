@@ -1,4 +1,4 @@
-package com.example.weather.data.remote
+package com.example.data.remote
 
 import dagger.Module
 import dagger.Provides
@@ -25,9 +25,14 @@ object RetrofitInstance {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideApiKey(): String = ApiKey.KEY
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor, apiKey: String): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(ApiKeyInterceptor(apiKey))
             .build()
     }
 

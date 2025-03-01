@@ -1,22 +1,24 @@
-package com.example.weather.data.repository
+package com.example.data.repository
 
-import com.example.domain.City
-import com.example.weather.data.mapper.toDomain
-import com.example.weather.data.remote.WeatherApiService
-import com.example.domain.WeatherDomain
+import com.example.domain.model.City
+import com.example.data.mapper.toDomain
+import com.example.data.remote.WeatherApiService
+import com.example.domain.model.Weather
+import com.example.domain.repository.WeatherRepository
+import dagger.Provides
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class WeatherRepository @Inject constructor(
+class WeatherRepositoryImpl @Inject constructor(
     private val apiService: WeatherApiService,
-) {
-    suspend fun getCurrentWeather(city: City, apiKey: String): com.example.domain.WeatherDomain? {
+) : WeatherRepository {
+    override suspend fun getCurrentWeather(city: City): Weather? {
         return withContext(Dispatchers.IO) {
             try {
-                val response = apiService.getCurrentWeather(city.name, apiKey)
+                val response = apiService.getCurrentWeather(city.name)
                 if (response.isSuccessful) {
                     response.body()?.toDomain()
                 } else {

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.weather.R
-import com.example.domain.City
+import com.example.domain.model.City
 import com.example.weather.databinding.FragmentWeatherDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 

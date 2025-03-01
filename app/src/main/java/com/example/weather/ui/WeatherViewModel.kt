@@ -1,14 +1,14 @@
 package com.example.weather.ui
 
-import com.example.weather.data.remote.ApiKey
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.City
-import com.example.weather.data.repository.FavoriteCitiesRepository
-import com.example.weather.data.repository.WeatherRepository
-import com.example.weather.data.mapper.toUI
+import com.example.domain.model.City
+import com.example.domain.model.Weather
+import com.example.domain.repository.FavoriteCitiesRepository
+import com.example.domain.repository.WeatherRepository
+import com.example.weather.mapper.toUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -30,17 +30,17 @@ class WeatherViewModel @Inject constructor(
     private val _favoriteCities = MutableLiveData<MutableList<WeatherItem>>()
     val favoriteCities: LiveData<MutableList<WeatherItem>> = _favoriteCities
 
-    private val _weatherData = MutableLiveData<com.example.domain.WeatherDomain?>()
-    val weatherData: LiveData<com.example.domain.WeatherDomain?>
+    private val _weatherData = MutableLiveData<Weather?>()
+    val weatherData: LiveData<Weather?>
         get() {
             val result = _weatherData
             _weatherData.value = null
             return result
         }
 
-    fun fetchWeatherData(city: City, apiKey: String) {
+    fun fetchWeatherData(city: City) {
         viewModelScope.launch {
-            _weatherData.value = weatherRepository.getCurrentWeather(city, apiKey)
+            _weatherData.value = weatherRepository.getCurrentWeather(city)
             _fetchedProblem.value = _weatherData.value == null
         }
     }
@@ -57,7 +57,7 @@ class WeatherViewModel @Inject constructor(
             val updatedCities = mutableListOf<WeatherItem>()
             for (city in cityList) {
                 val weather = withContext(Dispatchers.IO) {
-                    weatherRepository.getCurrentWeather(city, ApiKey.KEY)
+                    weatherRepository.getCurrentWeather(city)
                 }
                 weather?.let {
                     updatedCities.add(it.toUI())
