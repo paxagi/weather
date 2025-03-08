@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitInstance {
+internal object RetrofitInstance {
     private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
 
     @Provides

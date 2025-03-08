@@ -6,7 +6,7 @@ import com.example.weather.domain.model.City
 import com.example.weather.domain.repository.FavoriteCitiesRepository
 import javax.inject.Inject
 
-class FavoriteCitiesRepositoryImpl @Inject constructor(private val dao: FavoriteCitiesDao) :
+internal class FavoriteCitiesRepositoryImpl @Inject constructor(private val dao: FavoriteCitiesDao) :
     FavoriteCitiesRepository {
     override suspend fun insert(city: City) = dao.insert(FavoriteCityEntity(city.name))
     override suspend fun getAll(): List<City> = dao.getAll().map { City(it.city) }

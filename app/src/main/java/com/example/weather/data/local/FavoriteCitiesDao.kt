@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface FavoriteCitiesDao {
+internal interface FavoriteCitiesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(city: FavoriteCityEntity)
 

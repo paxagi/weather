@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DatabaseModule {
+internal object DatabaseModule {
 
     @Provides
     @Singleton
@@ -21,6 +21,7 @@ object DatabaseModule {
     }
 
     @Provides
+    @Singleton
     fun provideFavoriteCitiesDao(appDatabase: AppDatabase): FavoriteCitiesDao {
         return appDatabase.favoriteCitiesDao()
     }

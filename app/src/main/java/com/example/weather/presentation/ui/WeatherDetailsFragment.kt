@@ -15,7 +15,7 @@ import com.example.weather.domain.model.City
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WeatherDetailsFragment : Fragment() {
+internal class WeatherDetailsFragment : Fragment() {
 
     private val weatherViewModel: WeatherViewModel by viewModels()
     private val navArgs: WeatherDetailsFragmentArgs by navArgs()

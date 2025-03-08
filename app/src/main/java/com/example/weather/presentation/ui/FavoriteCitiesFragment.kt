@@ -14,7 +14,7 @@ import com.example.weather.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoriteCitiesFragment : Fragment() {
+internal class FavoriteCitiesFragment : Fragment() {
 
     private val weatherViewModel: WeatherViewModel by viewModels()
 

@@ -10,7 +10,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class WeatherRepositoryImpl @Inject constructor(
+internal class WeatherRepositoryImpl @Inject constructor(
     private val apiService: com.example.weather.data.remote.WeatherApiService,
 ) : WeatherRepository {
     override suspend fun getCurrentWeather(city: City): Weather? {

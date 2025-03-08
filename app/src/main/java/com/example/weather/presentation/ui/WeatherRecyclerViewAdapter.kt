@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.example.weather.databinding.WeatherItemBinding
 
 
-class WeatherRecyclerViewAdapter(
+internal class WeatherRecyclerViewAdapter(
     private val weatherList: List<WeatherItem>,
     private val itemClickListener: (WeatherItem) -> Unit,
 ) : RecyclerView.Adapter<WeatherRecyclerViewAdapter.ViewHolder>() {

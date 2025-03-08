@@ -15,7 +15,7 @@ import com.example.weather.presentation.mapper.toUI
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchCityFragment : Fragment() {
+internal class SearchCityFragment : Fragment() {
 
     private val weatherViewModel: WeatherViewModel by viewModels()
     private var _binding: FragmentSearchCityBinding? = null

@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class WeatherViewModel @Inject constructor(
+internal class WeatherViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
     private val favoriteCitiesRepository: FavoriteCitiesRepository,
 ): ViewModel() {
