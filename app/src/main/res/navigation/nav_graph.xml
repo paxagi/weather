@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/favoriteCitiesFragment"
-        android:name="com.example.weather.presentation.ui.FavoriteCitiesFragment"
+        android:name="com.example.weather.presentation.ui.fragment.FavoriteCitiesFragment"
         android:label="Favorite Cities"
         tools:layout="@layout/fragment_favorite_cities">
         <action
@@ -20,17 +20,17 @@
 
     <fragment
         android:id="@+id/weatherDetailsFragment"
-        android:name="com.example.weather.presentation.ui.WeatherDetailsFragment"
+        android:name="com.example.weather.presentation.ui.fragment.WeatherDetailsFragment"
         android:label="Weather Details"
         tools:layout="@layout/fragment_weather_details">
         <argument
             android:name="weather"
-            app:argType="com.example.weather.presentation.ui.WeatherItem" />
+            app:argType="com.example.weather.presentation.ui.model.WeatherItem" />
     </fragment>
 
     <fragment
         android:id="@+id/searchCityFragment"
-        android:name="com.example.weather.presentation.ui.SearchCityFragment"
+        android:name="com.example.weather.presentation.ui.fragment.SearchCityFragment"
         android:label="Search City"
         tools:layout="@layout/fragment_search_city">
         <action

@@ -1,4 +1,4 @@
-package com.example.weather.presentation.ui
+package com.example.weather.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.weather.R
 import com.example.weather.databinding.FragmentWeatherDetailsBinding
+import com.example.weather.presentation.ui.model.WeatherItem
+import com.example.weather.presentation.ui.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

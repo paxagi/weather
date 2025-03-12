@@ -1,4 +1,4 @@
-package com.example.weather.presentation.ui
+package com.example.weather.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.weather.databinding.FragmentSearchCityBinding
 import com.example.weather.presentation.mapper.toUI
+import com.example.weather.presentation.ui.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.weather.databinding.WeatherItemBinding
+import com.example.weather.presentation.ui.model.WeatherItem
 
 
 internal class WeatherRecyclerViewAdapter(

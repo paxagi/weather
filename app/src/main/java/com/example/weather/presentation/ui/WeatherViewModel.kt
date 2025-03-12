@@ -10,6 +10,7 @@ import com.example.weather.domain.usecase.AddOrRemoveFavoriteCityUseCase
 import com.example.weather.domain.usecase.GetFavoriteCitiesUseCase
 import com.example.weather.domain.usecase.IsCityFavoriteUseCase
 import com.example.weather.presentation.mapper.toUI
+import com.example.weather.presentation.ui.model.WeatherItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
