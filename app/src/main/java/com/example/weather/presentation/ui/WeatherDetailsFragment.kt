@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.weather.R
 import com.example.weather.databinding.FragmentWeatherDetailsBinding
-import com.example.weather.domain.model.City
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,10 +45,10 @@ internal class WeatherDetailsFragment : Fragment() {
                     else getString(R.string.fav_add_btn_label)
             }
         }
-        weatherViewModel.isFavorite(City(weather.cityName))
+        weatherViewModel.isFavorite(weather.cityName)
 
         buttonAddToFavorites.setOnClickListener {
-            weatherViewModel.addOrRemoveFavoriteCity(City(weather.cityName))
+            weatherViewModel.addOrRemoveFavoriteCity(weather.cityName)
         }
 
         textViewCity.text = weather.cityName

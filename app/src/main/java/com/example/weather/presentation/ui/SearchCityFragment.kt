@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.weather.databinding.FragmentSearchCityBinding
-import com.example.weather.domain.model.City
 import com.example.weather.presentation.mapper.toUI
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +46,7 @@ internal class SearchCityFragment : Fragment() {
 
         buttonSearch.setOnClickListener {
                 val cityName = editTextCity.text.toString().trim()
-                weatherViewModel.fetchWeatherData(City(cityName))
+                weatherViewModel.fetchWeatherData(cityName)
         }
     }
 }

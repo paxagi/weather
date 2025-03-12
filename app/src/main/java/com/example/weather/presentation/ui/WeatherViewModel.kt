@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weather.domain.model.City
 import com.example.weather.domain.model.Weather
 import com.example.weather.domain.repository.FavoriteCitiesRepository
 import com.example.weather.domain.repository.WeatherRepository
@@ -38,14 +37,14 @@ internal class WeatherViewModel @Inject constructor(
             return result
         }
 
-    fun fetchWeatherData(city: City) {
+    fun fetchWeatherData(city: String) {
         viewModelScope.launch {
             _weatherData.value = weatherRepository.getCurrentWeather(city)
             _fetchedProblem.value = _weatherData.value == null
         }
     }
 
-    fun isFavorite(city: City) {
+    fun isFavorite(city: String) {
         viewModelScope.launch {
             _cityIsFavorite.value = favoriteCitiesRepository.exists(city)
         }
@@ -67,11 +66,11 @@ internal class WeatherViewModel @Inject constructor(
         }
     }
 
-    fun addOrRemoveFavoriteCity(city: City) {
+    fun addOrRemoveFavoriteCity(city: String) {
         viewModelScope.launch {
             loadFavoriteCities().join()
             if (favoriteCitiesRepository.exists(city)) {
-                favoriteCitiesRepository.delete(city.name)
+                favoriteCitiesRepository.delete(city)
             } else {
                 favoriteCitiesRepository.insert(city)
             }

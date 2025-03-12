@@ -1,7 +1,6 @@
 package com.example.weather.data.repository
 
 import com.example.weather.data.mapper.toDomain
-import com.example.weather.domain.model.City
 import com.example.weather.domain.model.Weather
 import com.example.weather.domain.repository.WeatherRepository
 import kotlinx.coroutines.Dispatchers
@@ -13,10 +12,10 @@ import javax.inject.Inject
 internal class WeatherRepositoryImpl @Inject constructor(
     private val apiService: com.example.weather.data.remote.WeatherApiService,
 ) : WeatherRepository {
-    override suspend fun getCurrentWeather(city: City): Weather? {
+    override suspend fun getCurrentWeather(city: String): Weather? {
         return withContext(Dispatchers.IO) {
             try {
-                val response = apiService.getCurrentWeather(city.name)
+                val response = apiService.getCurrentWeather(city)
                 if (response.isSuccessful) {
                     response.body()?.toDomain()
                 } else {

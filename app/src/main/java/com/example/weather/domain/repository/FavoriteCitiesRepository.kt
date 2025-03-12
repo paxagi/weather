@@ -1,10 +1,8 @@
 package com.example.weather.domain.repository
 
-import com.example.weather.domain.model.City
-
 interface FavoriteCitiesRepository {
-    suspend fun insert(city: City)
-    suspend fun getAll(): List<City>
+    suspend fun insert(city: String)
+    suspend fun getAll(): List<String>
     suspend fun delete(cityName: String)
-    suspend fun exists(city: City): Boolean
+    suspend fun exists(city: String): Boolean
 }

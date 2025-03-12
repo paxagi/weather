@@ -4,7 +4,7 @@ import com.example.weather.domain.model.Weather
 import com.example.weather.presentation.ui.WeatherItem
 
 internal fun Weather.toUI() = WeatherItem(
-    city.name,
+    city,
     temperature.toString(),
     feelsLike.toString(),
     temperatureMin.toString(),
