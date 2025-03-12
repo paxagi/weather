@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.weather.R
 import com.example.weather.databinding.FragmentWeatherDetailsBinding
-import com.example.weather.presentation.ui.model.WeatherItem
+import com.example.weather.presentation.model.WeatherItem
 import com.example.weather.presentation.ui.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

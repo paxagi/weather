@@ -1,7 +1,7 @@
 package com.example.weather.presentation.mapper
 
 import com.example.weather.domain.model.Weather
-import com.example.weather.presentation.ui.model.WeatherItem
+import com.example.weather.presentation.model.WeatherItem
 
 internal fun Weather.toUI() = WeatherItem(
     city,

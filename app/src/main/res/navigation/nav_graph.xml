@@ -25,7 +25,7 @@
         tools:layout="@layout/fragment_weather_details">
         <argument
             android:name="weather"
-            app:argType="com.example.weather.presentation.ui.model.WeatherItem" />
+            app:argType="com.example.weather.presentation.model.WeatherItem" />
     </fragment>
 
     <fragment
