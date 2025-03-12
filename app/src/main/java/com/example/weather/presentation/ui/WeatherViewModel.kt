@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weather.domain.model.Weather
-import com.example.weather.domain.repository.FavoriteCitiesRepository
-import com.example.weather.domain.repository.WeatherRepository
+import com.example.weather.domain.usecase.GetWeatherUseCase
+import com.example.weather.domain.usecase.AddOrRemoveFavoriteCityUseCase
+import com.example.weather.domain.usecase.GetFavoriteCitiesUseCase
+import com.example.weather.domain.usecase.IsCityFavoriteUseCase
 import com.example.weather.presentation.mapper.toUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,8 +19,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class WeatherViewModel @Inject constructor(
-    private val weatherRepository: WeatherRepository,
-    private val favoriteCitiesRepository: FavoriteCitiesRepository,
+    private val getWeatherUseCase: GetWeatherUseCase,
+    private val isCityFavoriteUseCase: IsCityFavoriteUseCase,
+    private val getFavoriteCitiesUseCase: GetFavoriteCitiesUseCase,
+    private val addOrRemoveFavoriteCityUseCase: AddOrRemoveFavoriteCityUseCase,
 ): ViewModel() {
     private val _cityIsFavorite = MutableLiveData<Boolean>()
     var cityIsFavorite: LiveData<Boolean> = _cityIsFavorite
@@ -39,41 +43,28 @@ internal class WeatherViewModel @Inject constructor(
 
     fun fetchWeatherData(city: String) {
         viewModelScope.launch {
-            _weatherData.value = weatherRepository.getCurrentWeather(city)
+            _weatherData.value = getWeatherUseCase(city)
             _fetchedProblem.value = _weatherData.value == null
         }
     }
 
     fun isFavorite(city: String) {
         viewModelScope.launch {
-            _cityIsFavorite.value = favoriteCitiesRepository.exists(city)
+            _cityIsFavorite.value = isCityFavoriteUseCase(city)
         }
     }
 
     fun loadFavoriteCities(): Job {
         return viewModelScope.launch {
-            val cityList = favoriteCitiesRepository.getAll()
-            val updatedCities = mutableListOf<WeatherItem>()
-            for (city in cityList) {
-                val weather = withContext(Dispatchers.IO) {
-                    weatherRepository.getCurrentWeather(city)
-                }
-                weather?.let {
-                    updatedCities.add(it.toUI())
-                }
-            }
-            _favoriteCities.value = updatedCities
+            val favoriteCities = withContext(Dispatchers.IO) { getFavoriteCitiesUseCase() }
+            val updatedCities = favoriteCities.map { it.toUI() }
+            _favoriteCities.value = updatedCities as MutableList<WeatherItem>
         }
     }
 
     fun addOrRemoveFavoriteCity(city: String) {
         viewModelScope.launch {
-            loadFavoriteCities().join()
-            if (favoriteCitiesRepository.exists(city)) {
-                favoriteCitiesRepository.delete(city)
-            } else {
-                favoriteCitiesRepository.insert(city)
-            }
+            addOrRemoveFavoriteCityUseCase(city)
             isFavorite(city)
             loadFavoriteCities().join()
         }
