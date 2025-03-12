@@ -50,6 +50,6 @@ internal class FavoriteCitiesFragment : Fragment() {
                 }
             }
         }
-        weatherViewModel.loadFavoriteCities()
+        weatherViewModel.fetchFavoriteCitiesData()
     }
 }

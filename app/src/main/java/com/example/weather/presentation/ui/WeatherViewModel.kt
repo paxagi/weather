@@ -55,7 +55,7 @@ internal class WeatherViewModel @Inject constructor(
         }
     }
 
-    fun loadFavoriteCities(): Job {
+    fun fetchFavoriteCitiesData(): Job {
         return viewModelScope.launch {
             val favoriteCities = withContext(Dispatchers.IO) { getFavoriteCitiesUseCase() }
             val updatedCities = favoriteCities.map { it.toUI() }
@@ -67,7 +67,7 @@ internal class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
             addOrRemoveFavoriteCityUseCase(city)
             isFavorite(city)
-            loadFavoriteCities().join()
+            fetchFavoriteCitiesData().join()
         }
     }
 }
