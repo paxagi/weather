@@ -1,7 +1,6 @@
 [versions]
-agp = "8.8.1"
+agp = "8.8.2"
 appcompat = "1.7.0"
-compiler = "1.1.1"
 constraintlayout = "2.2.0"
 converterGson = "2.9.0"
 hiltAndroid = "2.51.1"
